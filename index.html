@@ -40,6 +40,19 @@
           fontFamily: {
             'libre': ['"Libre Franklin"', 'sans-serif'],  // Libre Franklin 폰트 사용
           },
+          // 커스텀 폰트 크기 정의 (style-guide.md의 Text Preset에 맞춤)
+          fontSize: {
+            // Preset 1: 48px / 줄 간격 125% / 글자 간격 0px (메인 제목용)
+            'preset-1': ['48px', { lineHeight: '1.25', letterSpacing: '0px' }],
+            // Preset 2: 20px / 줄 간격 125% / 글자 간격 0px (부제목용)
+            'preset-2': ['20px', { lineHeight: '1.25', letterSpacing: '0px' }],
+            // Preset 3: 16px / 줄 간격 125% / 글자 간격 0px (버튼, 입력 필드용)
+            'preset-3': ['16px', { lineHeight: '1.25', letterSpacing: '0px' }],
+            // Preset 4: 12px / 줄 간격 125% / 글자 간격 0px (에러 메시지, 저작권 문구용)
+            'preset-4': ['12px', { lineHeight: '1.25', letterSpacing: '0px' }],
+            // Preset 5: 10px / 줄 간격 125% / 글자 간격 0px (아주 작은 텍스트용)
+            'preset-5': ['10px', { lineHeight: '1.25', letterSpacing: '0px' }],
+          },
         },
       },
     }
@@ -125,22 +138,25 @@
       <!-- 
         부제목
         - text-blue-950: 진한 남색
-        - text-[16px]: 폰트 크기 16px (모바일)
-        - md:text-[20px]: 중간 화면 이상에서 20px
+        - text-preset-3: 폰트 크기 16px (모바일, Preset 3 적용)
+        - md:text-preset-2: 중간 화면 이상에서 20px (태블릿/데스크탑, Preset 2 적용)
         - font-light: 얇은 굵기
-        - mb-8: 하단 여백 32px
+        - mb-10: 하단 여백 40px
       -->
-      <p class="text-blue-950 text-[16px] md:text-[20px] font-light mb-8">
+      <p class="text-blue-950 text-preset-3 md:text-preset-2 font-light mb-10">
         Subscribe and get notified
       </p>
 
       <!-- 
         이메일 입력 폼
         - id: JavaScript에서 폼을 찾기 위한 고유 ID
+        - w-full: 모바일에서 전체 너비
+        - md:max-w-[637px]: 중간 화면 이상에서 최대 너비 637px (요청에 따라 수정)
+        - mx-auto: 가로 가운데 정렬
         - mb-12: 하단 여백 48px (모바일)
-        - md:mb-16: 중간 화면 이상에서 64px
+        - md:mb-24: 중간 화면 이상에서 하단 여백 96px (기존 64px에서 수정)
       -->
-      <form id="subscribeForm" class="w-full mb-12 md:mb-16">
+      <form id="subscribeForm" class="w-full md:max-w-[637px] mx-auto mb-12 md:mb-24">
         <!-- 
           폼 내부 컨테이너
           - flex flex-col: 기본은 세로 배치 (모바일)
@@ -163,11 +179,13 @@
               - id: JavaScript에서 접근하기 위한 ID
               - placeholder: 입력 전 안내 문구
               - w-full: 너비 100%
-              - px-6 py-3: 좌우 여백 24px, 상하 여백 12px
-              - border border-gray-200: 얇은 회색 테두리
+              - px-8 py-[18px]: 내부 여백 (좌우 32px, 상하 18px로 수정)
+              - md:h-14: 데스크탑에서 높이 56px 유지
+              - border border-blue-200: 연한 파란색 테두리
               - rounded-full: 둥근 모서리 (완전 라운드)
               - text-[14px] md:text-[16px]: 폰트 크기 (반응형)
-              - placeholder:text-gray-400/50: placeholder 색상 (투명도 50%)
+              - font-light: 얇은 글꼴 두께 (300) 적용 (확인 후 추가)
+              - placeholder:text-blue-200: placeholder 색상 
               - focus:outline-none: 포커스 시 기본 아웃라인 제거
               - focus:border-blue-500: 포커스 시 파란색 테두리
               - transition-colors: 색상 변화 애니메이션
@@ -175,7 +193,7 @@
               - required: 필수 입력 필드
             -->
             <input type="email" id="emailInput" placeholder="Your email address..."
-              class="w-full px-6 py-3 border border-gray-200 rounded-full text-[14px] md:text-[16px] placeholder:text-gray-400/50 focus:outline-none focus:border-blue-500 transition-colors"
+              class="w-full px-8 py-[18px] md:h-14 border border-blue-200 rounded-full text-[14px] md:text-[16px] font-light placeholder:text-blue-200 focus:outline-none focus:border-blue-500 transition-colors"
               aria-label="Email address" required>
 
             <!-- 
@@ -193,22 +211,15 @@
           </div>
 
           <!-- 
-            Notify Me 버튼
-            - type="submit": 폼 제출 버튼
-            - w-full md:w-auto: 모바일에서는 전체 너비, 중간 화면 이상에서는 내용 크기만큼
-            - bg-blue-500: 파란색 배경
-            - hover:bg-opacity-90: 마우스 올렸을 때 살짝 투명하게 (호버 효과)
-            - text-white: 흰색 텍스트
-            - font-semibold: 중간 굵기 (600)
-            - text-[14px] md:text-[16px]: 폰트 크기 (반응형)
-            - px-12 py-3: 좌우 여백 48px, 상하 여백 12px
-            - rounded-full: 둥근 모서리
-            - transition-all: 모든 속성 변화 애니메이션
-            - shadow-md: 그림자 효과
-            - hover:shadow-lg: 마우스 올렸을 때 더 큰 그림자
-          -->
+              Notify Me 버튼
+              - shadow-[0_5px_10px_2px_rgba(76,123,243,0.23)]: 요청받은 정밀 그림자 효과
+                - x: 0px, y: 5px
+                - blur: 10px, spread: 2px
+                - color: #4C7BF3 (파란색)
+                - opacity: 23%
+            -->
           <button type="submit"
-            class="w-full md:w-auto bg-blue-500 hover:bg-opacity-90 text-white font-semibold text-[14px] md:text-[16px] px-12 py-3 rounded-full transition-all shadow-md hover:shadow-lg">
+            class="w-full md:w-auto bg-blue-500 hover:bg-opacity-90 text-white font-semibold text-[14px] md:text-[16px] px-[62.5px] py-[18px] md:h-14 rounded-full transition-all shadow-[0_5px_10px_2px_rgba(76,123,243,0.23)]">
             Notify Me
           </button>
         </div>
@@ -216,19 +227,18 @@
 
       <!-- 
         대시보드 일러스트레이션
-        - mb-16: 하단 여백 64px (모바일)
-        - md:mb-20: 중간 화면 이상에서 80px
+        - mb-[72px]: 하단 여백 72px (기존 64px/80px에서 수정)
       -->
-      <div class="mb-16 md:mb-20">
+      <div class="mb-[72px]">
         <!-- 
           이미지
           - w-full: 너비 100%
-          - max-w-[712px]: 최대 너비 712px (컨테이너 크기와 동일하게 수정)
+          - md:max-w-[639.88px]: 데스크탑에서 최대 너비 639.88px (요청에 따라 정밀 수정)
           - mx-auto: 좌우 자동 여백 (가운데 정렬)
           - alt: 스크린 리더를 위한 대체 텍스트
         -->
         <img src="./images/illustration-dashboard.png" alt="Dashboard Illustration"
-          class="w-full max-w-[712px] mx-auto">
+          class="w-full md:max-w-[639.88px] mx-auto">
       </div>
     </section>
 
