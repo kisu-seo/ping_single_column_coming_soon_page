@@ -89,25 +89,26 @@
   <!-- 
     메인 컨테이너
     - w-full: 너비 100%
-    - max-w-[712px]: 최대 너비 712px로 제한 (데스크탑 화면에 맞게 640px에서 수정)
+    - max-w-[319.94px]: 모바일 최대 너비 319.94px (요청에 따라 정밀 수정)
+    - md:max-w-[712px]: 중간 화면 이상에서 최대 너비 712px로 제한
     - flex flex-col: 세로 방향 flexbox
     - items-center text-center: 모든 요소 가운데 정렬
   -->
-  <main class="w-full max-w-[712px] flex flex-col items-center text-center">
+  <main class="w-full max-w-[319.94px] md:max-w-[712px] flex flex-col items-center text-center">
 
     <!-- 
       로고 헤더
-      - mb-8: 하단 여백 32px (모바일)
+      - mb-10: 하단 여백 40px (모바일, 기존 32px에서 수정)
       - md:mb-12: 중간 화면(768px) 이상에서 하단 여백 48px로 확대
     -->
-    <header class="mb-8 md:mb-12">
+    <header class="mb-10 md:mb-12">
       <!-- 
         로고 이미지
-        - h-6: 높이 24px (모바일)
+        - h-[15.24px]: 모바일 높이 15.24px (요청에 따라 정밀 수정)
         - md:h-7: 중간 화면 이상에서 높이 28px
         - alt: 스크린 리더를 위한 대체 텍스트
       -->
-      <img src="./images/logo.svg" alt="PING Logo" class="h-6 md:h-7">
+      <img src="./images/logo.svg" alt="PING Logo" class="h-[15.24px] md:h-7">
     </header>
 
     <!-- 메인 콘텐츠 섹션 (w-full: 너비 100%) -->
@@ -117,46 +118,51 @@
         - text-[28px]: 폰트 크기 28px (모바일)
         - md:text-[48px]: 중간 화면 이상에서 48px
         - leading-tight: 줄 간격 좁게
-        - mb-4: 하단 여백 16px
+        - mb-2: 하단 여백 8px (모바일, 기존 16px에서 수정)
+        - md:mb-4: 중간 화면 이상에서 하단 여백 16px
       -->
-      <h1 class="text-[28px] md:text-[48px] leading-tight mb-4">
+      <h1 class="text-[28px] md:text-[48px] leading-tight mb-2 md:mb-4">
         <!-- 
           "We are launching" 부분
           - text-gray-400: 회색 (#969696)
+          - text-[20px]: 모바일에서 20px 적용
+          - md:text-[48px]: 데스크탑에서 48px 적용 (명시적 크기 지정)
           - font-light: 얇은 굵기 (300)
         -->
-        <span class="text-gray-400 font-light">We are launching</span>
+        <span class="text-gray-400 text-[20px] md:text-[48px] font-light">We are launching</span>
 
         <!-- 
           "soon!" 부분
           - text-blue-950: 진한 남색 (#15202A)
+          - text-[20px]: 모바일에서 20px 적용
+          - md:text-[48px]: 데스크탑에서 48px 적용 (명시적 크기 지정)
           - font-bold: 굵은 굵기 (700)
         -->
-        <span class="text-blue-950 font-bold"> soon!</span>
+        <span class="text-blue-950 text-[20px] md:text-[48px] font-bold"> soon!</span>
       </h1>
 
       <!-- 
         부제목
         - text-blue-950: 진한 남색
-        - text-preset-3: 폰트 크기 16px (모바일, Preset 3 적용)
+        - text-preset-4: 폰트 크기 12px (모바일, Preset 4 적용, 기존 Preset 3에서 수정)
         - md:text-preset-2: 중간 화면 이상에서 20px (태블릿/데스크탑, Preset 2 적용)
         - font-light: 얇은 굵기
         - mb-10: 하단 여백 40px
       -->
-      <p class="text-blue-950 text-preset-3 md:text-preset-2 font-light mb-10">
+      <p class="text-blue-950 text-preset-4 md:text-preset-2 font-light mb-10">
         Subscribe and get notified
       </p>
 
       <!-- 
         이메일 입력 폼
         - id: JavaScript에서 폼을 찾기 위한 고유 ID
-        - w-full: 모바일에서 전체 너비
-        - md:max-w-[637px]: 중간 화면 이상에서 최대 너비 637px (요청에 따라 수정)
+        - max-w-[282px]: 모바일 최대 너비 282px (요청에 따라 정밀 수정)
+        - md:max-w-[637px]: 중간 화면 이상에서 최대 너비 637px
         - mx-auto: 가로 가운데 정렬
-        - mb-12: 하단 여백 48px (모바일)
-        - md:mb-24: 중간 화면 이상에서 하단 여백 96px (기존 64px에서 수정)
+        - mb-[70px]: 하단 여백 70px (모바일, 기존 48px에서 수정)
+        - md:mb-24: 중간 화면 이상에서 하단 여백 96px
       -->
-      <form id="subscribeForm" class="w-full md:max-w-[637px] mx-auto mb-12 md:mb-24">
+      <form id="subscribeForm" class="w-full max-w-[282px] md:max-w-[637px] mx-auto mb-[70px] md:mb-24">
         <!-- 
           폼 내부 컨테이너
           - flex flex-col: 기본은 세로 배치 (모바일)
@@ -168,58 +174,85 @@
         <div class="flex flex-col md:flex-row gap-3 md:gap-4 items-start">
 
           <!-- 
-            이메일 입력 필드와 에러 메시지를 감싸는 컨테이너
+            이메일 입력 필드 컨테이너
             - w-full: 너비 100%
             - md:flex-1: 중간 화면 이상에서 남은 공간 모두 차지
+            - md:relative: 태블릿 이상에서 에러 메시지의 absolute positioning 기준점 역할
           -->
-          <div class="w-full md:flex-1">
+          <div class="w-full md:flex-1 md:relative">
             <!-- 
               이메일 입력 필드
               - type="email": 이메일 형식 자동 검증
               - id: JavaScript에서 접근하기 위한 ID
               - placeholder: 입력 전 안내 문구
               - w-full: 너비 100%
-              - px-8 py-[18px]: 내부 여백 (좌우 32px, 상하 18px로 수정)
+              - px-6 py-0: 모바일 내부 여백 (좌우 24px, 상하 0)
+              - h-10: 모바일 높이 40px (요청에 따라 수정)
+              - md:px-8 md:py-[18px]: 중간 화면 이상에서 내부 여백 (좌우 32px, 상하 18px)
               - md:h-14: 데스크탑에서 높이 56px 유지
               - border border-blue-200: 연한 파란색 테두리
               - rounded-full: 둥근 모서리 (완전 라운드)
-              - text-[14px] md:text-[16px]: 폰트 크기 (반응형)
-              - font-light: 얇은 글꼴 두께 (300) 적용 (확인 후 추가)
+              - text-[14px] md:text-[16px]: 입력 텍스트 크기 (기존 유지)
+              - placeholder:text-preset-4: 모바일 placeholder 크기 12px
+              - md:placeholder:text-preset-3: 중간 화면 이상에서 placeholder 크기 16px
+              - font-light: 얇은 글꼴 두께 (300) 적용
               - placeholder:text-blue-200: placeholder 색상 
               - focus:outline-none: 포커스 시 기본 아웃라인 제거
               - focus:border-blue-500: 포커스 시 파란색 테두리
               - transition-colors: 색상 변화 애니메이션
+              - leading-normal: 줄 간격 정규화 (상하 중앙 정렬 도움)
               - aria-label: 스크린 리더를 위한 설명
               - required: 필수 입력 필드
             -->
             <input type="email" id="emailInput" placeholder="Your email address..."
-              class="w-full px-8 py-[18px] md:h-14 border border-blue-200 rounded-full text-[14px] md:text-[16px] font-light placeholder:text-blue-200 focus:outline-none focus:border-blue-500 transition-colors"
+              class="w-full px-6 py-0 h-10 md:px-8 md:py-[18px] md:h-14 border border-blue-200 rounded-full text-[14px] md:text-[16px] font-light placeholder:text-preset-4 md:placeholder:text-preset-3 placeholder:text-blue-200 focus:outline-none focus:border-blue-500 transition-colors leading-normal"
               aria-label="Email address" required>
 
             <!-- 
               에러 메시지 (기본적으로 숨김)
               - id: JavaScript에서 접근하기 위한 ID
+              - 모바일: 일반 흐름(relative)으로 입력 필드 아래에 자연스럽게 표시, 중앙 정렬(text-center)
+              - 태블릿 이상: absolute positioning으로 문서 흐름에서 분리 (Layout Shift 방지), 왼쪽 정렬(md:text-left)
+              - md:absolute md:top-full md:left-0: 태블릿 이상에서 부모 컨테이너 아래에 배치
               - text-red-400: 빨간색 텍스트
-              - text-[12px]: 폰트 크기 12px
+              - text-preset-5: 모바일 폰트 크기 10px (Preset 5 적용)
+              - md:text-preset-4: 태블릿/데스크탑 폰트 크기 12px (Preset 4 적용)
               - italic: 이탤릭체
-              - mt-2 ml-6: 위쪽 여백 8px, 왼쪽 여백 24px
+              - mt-2: 위쪽 여백 8px (입력 필드와의 간격)
+              - mb-6: 모바일에서 아래쪽 여백 24px
+              - md:mb-0: 태블릿 이상에서 아래쪽 여백 제거 (absolute positioning이므로 불필요)
+              - text-center md:text-left: 모바일 중앙 정렬 / 데스크탑 왼쪽 정렬
+              - md:ml-8: 데스크탑에서 왼쪽 여백 32px (입력창 패딩과 일치)
+              - w-full: 중앙 정렬을 위해 전체 너비 차지
               - hidden: 기본적으로 숨김 (에러 발생 시 JavaScript로 표시)
             -->
-            <p id="errorMessage" class="text-red-400 text-[12px] italic mt-2 ml-6 hidden">
+            <p id="errorMessage"
+              class="text-red-400 text-preset-5 md:text-preset-4 italic mt-2 mb-6 md:mb-0 text-center md:text-left md:ml-8 w-full md:absolute md:top-full md:left-0 hidden">
               Please provide a valid email address
             </p>
           </div>
 
           <!-- 
-              Notify Me 버튼
-              - shadow-[0_5px_10px_2px_rgba(76,123,243,0.23)]: 요청받은 정밀 그림자 효과
-                - x: 0px, y: 5px
-                - blur: 10px, spread: 2px
-                - color: #4C7BF3 (파란색)
-                - opacity: 23%
-            -->
+            Notify Me 버튼
+            - type="submit": 폼 제출 버튼
+            - w-full md:w-auto: 모바일에서는 전체 너비, 중간 화면 이상에서는 내용 크기만큼
+            - bg-blue-500: 파란색 배경
+            - hover:bg-opacity-90: 마우스 올렸을 때 살짝 투명하게
+            - text-white: 흰색 텍스트
+            - font-semibold: 중간 굵기 (600)
+            - text-preset-4: 모바일 폰트 크기 12px (Preset 4 적용)
+            - md:text-preset-3: 중간 화면 이상에서 16px (Preset 3 적용)
+            - text-center: 텍스트 중앙 정렬
+            - px-0: 모바일에서 좌우 패딩 제거 (요청에 따라 수정)
+            - py-[12.5px]: 모바일 상하 내부 여백
+            - md:px-[62.5px] md:py-[18px]: 중간 화면 이상에서 내부 여백 (좌우 62.5px, 상하 18px)
+            - md:h-14: 데스크탑에서 높이 56px 유지
+            - rounded-full: 둥근 모서리
+            - transition-all: 모든 속성 변화 애니메이션
+            - shadow-[0_5px_10px_2px_rgba(76,123,243,0.23)]: 요청받은 정밀 그림자 효과
+          -->
           <button type="submit"
-            class="w-full md:w-auto bg-blue-500 hover:bg-opacity-90 text-white font-semibold text-[14px] md:text-[16px] px-[62.5px] py-[18px] md:h-14 rounded-full transition-all shadow-[0_5px_10px_2px_rgba(76,123,243,0.23)]">
+            class="w-full md:w-auto bg-blue-500 hover:bg-opacity-90 text-white font-semibold text-preset-4 md:text-preset-3 text-center px-0 py-[12.5px] md:px-[62.5px] md:py-[18px] md:h-14 rounded-full transition-all shadow-[0_5px_10px_2px_rgba(76,123,243,0.23)]">
             Notify Me
           </button>
         </div>
@@ -227,9 +260,10 @@
 
       <!-- 
         대시보드 일러스트레이션
-        - mb-[72px]: 하단 여백 72px (기존 64px/80px에서 수정)
+        - mb-[120px]: 하단 여백 120px (모바일)
+        - md:mb-[72px]: 태블릿 이상 화면에서 하단 여백 72px로 조정
       -->
-      <div class="mb-[72px]">
+      <div class="mb-[120px] md:mb-[72px]">
         <!-- 
           이미지
           - w-full: 너비 100%
@@ -242,21 +276,31 @@
       </div>
     </section>
 
-    <!-- 푸터 (w-full: 너비 100%) -->
-    <footer class="w-full">
+    <!-- 
+      푸터
+      - w-fit: 모바일에서 콘텐츠 너비(저작권 문구)에 딱 맞춤 (요청에 따라 수정)
+      - md:w-full: 중간 화면 이상에서 너비 100%
+      - md:max-w-none: 중간 화면 이상에서 최대 너비 제한 해제
+      - mx-auto: 가로 가운데 정렬
+    -->
+    <footer class="w-fit md:w-full md:max-w-none mx-auto">
       <!-- 
         소셜 미디어 아이콘 컨테이너
         - flex: flexbox 레이아웃
         - justify-center: 가운데 정렬
         - gap-4: 아이콘 사이 간격 16px
+        - max-w-[125.67px]: 모바일 최대 너비 125.67px (요청에 따라 수정)
+        - md:max-w-none: 중간 화면 이상에서 최대 너비 제한 해제
+        - mx-auto: 가로 가운데 정렬
         - mb-6: 하단 여백 24px
       -->
-      <div class="flex justify-center gap-4 mb-6">
+      <div class="flex justify-center gap-4 max-w-[125.67px] md:max-w-none mx-auto mb-6">
         <!-- 
           Facebook 링크
           - href="#": 임시 링크 (실제로는 Facebook 페이지 URL)
           - aria-label: 스크린 리더를 위한 설명
-          - w-10 h-10: 너비/높이 40px
+          - w-[31px] h-[31px]: 모바일 너비/높이 31px (요청에 따라 수정)
+          - md:w-10 md:h-10: 데스크탑에서 40px 유지
           - flex items-center justify-center: flexbox로 아이콘 가운데 정렬
           - border border-gray-200: 얇은 회색 테두리
           - rounded-full: 원형
@@ -267,21 +311,21 @@
           - transition-all: 모든 속성 변화 애니메이션
         -->
         <a href="#" aria-label="Facebook"
-          class="w-10 h-10 flex items-center justify-center border border-gray-200 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all">
+          class="w-[31px] h-[31px] md:w-10 md:h-10 flex items-center justify-center border border-gray-200 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all">
           <!-- Font Awesome Facebook 아이콘 -->
           <i class="fab fa-facebook-f"></i>
         </a>
 
         <!-- Twitter 링크 (클래스 설명은 Facebook과 동일) -->
         <a href="#" aria-label="Twitter"
-          class="w-10 h-10 flex items-center justify-center border border-gray-200 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all">
+          class="w-[31px] h-[31px] md:w-10 md:h-10 flex items-center justify-center border border-gray-200 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all">
           <!-- Font Awesome Twitter 아이콘 -->
           <i class="fab fa-twitter"></i>
         </a>
 
         <!-- Instagram 링크 (클래스 설명은 Facebook과 동일) -->
         <a href="#" aria-label="Instagram"
-          class="w-10 h-10 flex items-center justify-center border border-gray-200 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all">
+          class="w-[31px] h-[31px] md:w-10 md:h-10 flex items-center justify-center border border-gray-200 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all">
           <!-- Font Awesome Instagram 아이콘 -->
           <i class="fab fa-instagram"></i>
         </a>
@@ -290,11 +334,11 @@
       <!-- 
         저작권 문구
         - text-gray-400: 회색 텍스트
-        - text-[12px]: 폰트 크기 12px
-        - font-light: 얇은 굵기
+        - text-preset-4: 폰트 크기 12px (Preset 4 적용, 요청에 따라 수정)
+        - font-light: 얇은 굵기 (300)
         - &copy;: © 저작권 기호
       -->
-      <p class="text-gray-400 text-[12px] font-light">
+      <p class="text-gray-400 text-preset-4 font-light text-center">
         &copy; Copyright Ping. All rights reserved.
       </p>
     </footer>

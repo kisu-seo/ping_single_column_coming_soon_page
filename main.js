@@ -46,13 +46,26 @@ form.addEventListener('submit', function (e) {
     if (!validateEmail(email)) {
         // ❌ 이메일 형식이 틀린 경우
         // 입력창 테두리를 빨간색으로 바꾸고, 숨겨져 있던 에러 메시지를 보여줍니다.
-        emailInput.classList.add('border-red-400');      // 빨간색 테두리 클래스 추가
-        errorMessage.classList.remove('hidden');         // 'hidden'(숨김) 클래스 제거하여 노출
+        emailInput.classList.remove('border-blue-200');   // 기본 파란색 테두리 제거
+        emailInput.classList.remove('focus:border-blue-500'); // 포커스 시 파란색 테두리 제거
+        emailInput.classList.add('border-red-400');       // 빨간색 테두리 클래스 추가
+        errorMessage.classList.remove('hidden');          // 'hidden'(숨김) 클래스 제거하여 노출
+
+        // [추가] 모바일에서 에러 메시지가 표시되면 폼 하단 마진을 35px로 줄입니다.
+        // 이렇게 하면 화면이 너무 길어지는 것을 방지할 수 있습니다 (md: 클래스는 건드리지 않음).
+        form.classList.remove('mb-[70px]');
+        form.classList.add('mb-[35px]');
     } else {
         // ✅ 이메일 형식이 올바른 경우
         // 빨간색 테두리와 에러 메시지를 모두 지웁니다.
-        emailInput.classList.remove('border-red-400');   // 빨간색 테두리 제거
-        errorMessage.classList.add('hidden');            // 메시지를 다시 숨김
+        emailInput.classList.remove('border-red-400');    // 빨간색 테두리 제거
+        emailInput.classList.add('border-blue-200');      // 기본 파란색 테두리 복원
+        emailInput.classList.add('focus:border-blue-500'); // 포커스 시 파란색 테두리 복원
+        errorMessage.classList.add('hidden');             // 메시지를 다시 숨김
+
+        // [추가] 에러가 사라지면 폼 하단 마진을 원래의 70px로 복원합니다.
+        form.classList.remove('mb-[35px]');
+        form.classList.add('mb-[70px]');
 
         // 4. 사용자에게 성공 메시지를 보여줍니다. (실제 서비스라면 여기서 서버로 데이터를 보냅니다)
         alert('구독해 주셔서 감사합니다! 🎉 (Thank you for subscribing!)');
@@ -71,6 +84,12 @@ emailInput.addEventListener('input', function () {
     if (emailInput.classList.contains('border-red-400')) {
         // 빨간색 테두리와 에러 메시지를 즉시 숨깁니다.
         emailInput.classList.remove('border-red-400');
+        emailInput.classList.add('border-blue-200');       // 기본 파란색 테두리 복원
+        emailInput.classList.add('focus:border-blue-500'); // 포커스 시 파란색 테두리 복원
         errorMessage.classList.add('hidden');
+
+        // [추가] 다시 입력을 시작하여 에러가 사라지면 폼 하단 마진을 원래대로 복원합니다.
+        form.classList.remove('mb-[35px]');
+        form.classList.add('mb-[70px]');
     }
 });
